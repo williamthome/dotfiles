@@ -39,6 +39,10 @@ return {
 				"query",
 				"vimdoc",
 				"c",
+				"erlang",
+				"elixir",
+				"heex",
+				"eex",
 			},
 			incremental_selection = {
 				enable = true,

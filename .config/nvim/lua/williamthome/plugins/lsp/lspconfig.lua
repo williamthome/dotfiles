@@ -102,6 +102,11 @@ return {
 					},
 				})
 			end,
+			["elixirls"] = function()
+				lspconfig["elixirls"].setup({
+					cmd = { "../../../../bin/elixirls/language_server.sh" },
+				})
+			end,
 		})
 	end,
 }

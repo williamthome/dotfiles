@@ -37,7 +37,7 @@ return {
 				vimgrep_arguments = {
 					"rg",
 					"--hidden",
-					"--color=never",
+					"--color=auto",
 					"--no-heading",
 					"--with-filename",
 					"--line-number",

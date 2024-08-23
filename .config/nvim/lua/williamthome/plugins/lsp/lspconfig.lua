@@ -104,7 +104,9 @@ return {
 			end,
 			["elixirls"] = function()
 				lspconfig["elixirls"].setup({
-					cmd = { "../../../../bin/elixirls/language_server.sh" },
+					cmd = {
+						vim.fn.expand("$HOME/git/williamthome/dotfiles/.config/nvim/bin/elixirls/language_server.sh"),
+					},
 				})
 			end,
 		})

@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Exits on error
+set -euxo pipefail
+
 ## aliases
 
 alias ll="ls -alF"
@@ -46,7 +49,7 @@ if [[ ! -e "$HOME/git/erlang/rebar3" ]]; then
   cd $HOME/git/erlang/rebar3
   ./bootstrap
   ./rebar3 local install
-  ./rebar3 completion --file _build/default/completion.bash
+  ./rebar3 completion --file "$HOME/git/erlang/rebar3/_build/default/completion.bash"
   cd $HOME
 fi
 

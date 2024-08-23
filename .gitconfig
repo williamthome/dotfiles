@@ -1,0 +1,10 @@
+[core]
+  editor = nvim
+[init]
+  defaultBranch = main
+[commit]
+  gpgsign = true
+[includeIf "gitdir:~/git/"]
+  path = ~/.gitconfig.williamthome
+[includeIf "gitdir:~/abensoft/git/"]
+  path = ~/.gitconfig.abensoft-williamthome

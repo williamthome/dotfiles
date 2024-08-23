@@ -28,6 +28,6 @@ return {
 				},
 			})
 		end,
-		vim.keymap.set("n", "<leader>ee", "<Cmd>Neotree toggle<CR>"),
+		vim.keymap.set("n", "<C-e>", "<Cmd>Neotree toggle<CR>"),
 	},
 }

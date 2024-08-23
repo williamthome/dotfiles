@@ -2,7 +2,7 @@
 [[ $- != *i* ]] && return
 
 # Exits on error
-set -euxo pipefail
+set -eo pipefail
 
 ## aliases
 
@@ -74,15 +74,16 @@ export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 ## liquidprompt
 
-# Only load Liquid Prompt in interactive shells, not from a script or from scp
-if [[ $- = *i* ]]; then
-  if [[ ! -e "$HOME/git/liquidprompt" ]]; then
-    mkdir -p "$HOME/git/liquidprompt"
-    git clone https://github.com/liquidprompt/liquidprompt.git "$HOME/git/liquidprompt/liquidprompt"
-    git clone https://github.com/liquidprompt/liquidprompt-powerline.git "$HOME/git/liquidprompt/liquidprompt-powerline"
-  fi
+# Unset exits on error
+# I have no idea what kind of error is raised here
+set +e
 
-  source "$HOME/git/liquidprompt/liquidprompt/liquidprompt"
-  source "$HOME/git/liquidprompt/liquidprompt-powerline/powerline.theme"
-  lp_theme "powerline"
+if [[ ! -e "$HOME/git/liquidprompt" ]]; then
+  mkdir -p "$HOME/git/liquidprompt"
+  git clone https://github.com/liquidprompt/liquidprompt.git "$HOME/git/liquidprompt/liquidprompt"
+  git clone https://github.com/liquidprompt/liquidprompt-powerline.git "$HOME/git/liquidprompt/liquidprompt-powerline"
 fi
+
+source "$HOME/git/liquidprompt/liquidprompt/liquidprompt"
+source "$HOME/git/liquidprompt/liquidprompt-powerline/powerline.theme"
+lp_theme "powerline"

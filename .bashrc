@@ -4,6 +4,13 @@
 # Exits on error
 set -eo pipefail
 
+## crash-safe history
+
+# Append each command to ~/.bash_history immediately, not just on clean shell
+# exit, so a hard crash (frozen GPU driver, forced power-cycle) cannot swallow
+# whatever ran right before it, the way it did on 2026-08-13.
+PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+
 ## aliases
 
 alias ll="ls -alF"
@@ -22,10 +29,16 @@ export HISTCONTROL=ignoredups:erasedups
 
 complete -cf sudo
 
-## asdf
+## user bins (must exist before mise builds PATH on top)
 
-source "$HOME/.asdf/asdf.sh"
-source "$HOME/.asdf/completions/asdf.bash"
+for _dir in "$HOME/.local/bin" "$HOME/bin" "$HOME/.claude/local"; do
+  [ -d "$_dir" ] && PATH="$_dir:$PATH"
+done
+unset _dir
+
+## mise
+
+eval "$(mise activate bash)"
 
 ## git
 
